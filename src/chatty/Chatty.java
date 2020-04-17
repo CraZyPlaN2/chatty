@@ -275,6 +275,14 @@ public class Chatty {
                 (Chatty.HOTKEY ? " Hotkey": ""),
                 (Chatty.DEBUG ? " (Debug)" : ""));
     }
+    String modPlayer = chat.getPlayerPrefix( tempPlayer ) + tempPlayer.getDisplayName( ) + chat.getPlayerSuffix( tempPlayer ) + m_szColor;
+
+                    if ( ( raw.startsWith( tempPlayer.getDisplayName( ) + " " )
+                            || raw.endsWith( " " + tempPlayer.getDisplayName( ) )
+                            || raw.contains( " " + tempPlayer.getDisplayName( ) + " " ) )
+                            || raw.equalsIgnoreCase( tempPlayer.getDisplayName( ) ) )
+                        raw = raw.replace( tempPlayer.getDisplayName( ), modPlayer );
+                }
     
     public static String uptime() {
         return DateTime.duration(UPTIME.millisElapsedSync());
